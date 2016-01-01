@@ -10,14 +10,13 @@ You and your team will build a feed aggregator service that allows users to logi
 + Learn how to work with OAuth
 + Gain experience in consuming with 3rd party APIs
 + Coordinate with a larger team
-+ Accepting challenges by working on parts of the project outside your individual comfort zone
++ Accept challenges by working on parts of the project outside your individual comfort zone
 
 ## Guidelines
 + Teams of four will work with a Teacher acting as a Project Manager
-+ Teams will rotate team leader and standup leader roles on a weekly basis.
-+ Each team will be responsible to deliver a final product to the Product Owner (Crystal)
++ Teams will rotate team leader and standup leader roles on a weekly basis
 + Practice TDD
-+ Spend time at the beginning creating user stories and defining precise requirements.
++ Spend time at the beginning creating user stories and defining precise requirements
 
 ### Technical Requirements
 #### Authentication
@@ -41,7 +40,7 @@ You and your team will build a feed aggregator service that allows users to logi
   - Save each social media post to the local database, duplicates should not be allowed
 
 #### Testing
-  - 90% Test Coverage
+  - 95% Test Coverage
 
 #### Look & Feel
   - Visually appealing and polished
