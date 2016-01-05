@@ -13,7 +13,7 @@ You and your team will build a feed aggregator service that allows users to logi
 + Accept challenges by working on parts of the project outside your individual comfort zone
 
 ## Guidelines
-+ Teams of four will work with a Teacher acting as a Project Manager
++ Teams of three or four will work with a Teacher acting as a Project Manager
 + Teams will rotate team leader and standup leader roles on a weekly basis
 + Practice TDD
 + Spend time at the beginning creating user stories and defining precise requirements
