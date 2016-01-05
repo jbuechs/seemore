@@ -45,6 +45,10 @@ You and your team will build a feed aggregator service that allows users to logi
 #### Look & Feel
   - Visually appealing and polished
 
+### Baseline
+- Each team shall submit a baseline Pull Request with their Rails application created, ruby version, ruby gemset and gemfile updated with default gems
+- This PR shall be merged with the baseline setup prior to any other code being pushed to the branch/fork
+
 ### Final Submission
 - Deployed to Heroku and link included in the Pull Request and README
 - No major bugs
