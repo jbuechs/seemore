@@ -21,7 +21,7 @@ You and your team will build a feed aggregator service that allows users to logi
 ### Technical Requirements
 #### Authentication
   - Allows Users to sign in and out using [OmniAuth's Developer Strategy](http://rubydoc.info/github/intridea/omniauth/master/OmniAuth/Strategies/Developer) in development only. This should not be enabled for Production (a.k.a. Heroku deployment)
-  - Allows Users to sign-up and login with at least one social media account (Instagram (required), Twitter, Vimeo, Github)
+  - Allows Users to sign-up and login with at least two social media accounts (Instagram, Twitter, Vimeo, Github)
 
 #### APIs
   Choose two of the APIs below to implement:
@@ -46,12 +46,13 @@ You and your team will build a feed aggregator service that allows users to logi
   - Visually appealing and polished
 
 ### Final Submission
-- Deployed to Heroku and link included in the Pull Request
+- Deployed to Heroku and link included in the Pull Request and README
 - No major bugs
 - Minor bugs noted as Github issues
 
 ### Added Fun!
   - Automatically pulls in Twitter timeline feed for the authenticated user
   - Automatically pulls in Instagram timeline feed for the authenticated user
-  - Uses **cron** to periodically update feeds without duplication
-  - Allows Users to share favorite stories back to social media services
+  - Use any additional APIs not in your chosen two for authentication or feed aggregation
+  - Use **cron** to periodically update feeds without duplication
+  - Allow Users to share favorite stories back to social media services
