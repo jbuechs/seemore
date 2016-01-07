@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  #this line is for the omniauth developer strategy login. TODO: check security of this work around. 
   skip_before_filter :verify_authenticity_token, only: :create
 
   def create
