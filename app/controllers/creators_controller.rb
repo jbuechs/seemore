@@ -11,11 +11,16 @@ class CreatorsController < ApplicationController
 
   #use private methods to determine which api to search
   def search
-
+    raise
   end
 
   #remove a creator from a user's follow list
   def delete
 
   end
+
+  private
+    def vimeo_search(query)
+      raise
+    end
 end
