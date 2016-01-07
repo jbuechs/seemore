@@ -17,6 +17,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth'
 gem "omniauth-vimeo"
+gem 'omniauth-twitter'
 
 # TODO: Add gems for omniauth
 # gem 'omniauth-github'
