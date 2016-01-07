@@ -126,4 +126,19 @@ RSpec.describe SessionsController, type: :controller do
           end
         end
       end
+
+      describe "DELETE #destroy" do
+        before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
+        let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
+
+        it "deletes user id from session" do
+          delete :destroy
+          expect(session[:user_id]).to be_nil
+        end
+
+        it "redirects to login path" do
+          delete :destroy
+          expect(subject).to redirect_to login_path
+        end
+      end
     end
