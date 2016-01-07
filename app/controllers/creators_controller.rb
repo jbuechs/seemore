@@ -30,8 +30,7 @@ class CreatorsController < ApplicationController
 
   private
     def vimeo_search(query)
-      response = HTTParty.get("https://api.vimeo.com/users?query=#{query}")
-
+      response = HTTParty.get("https://api.vimeo.com/users?query=#{query}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
       raise
     end
 
