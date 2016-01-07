@@ -28,6 +28,30 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
   config.expect_with :rspec do |expectations|
+    config.before(:suite) do
+  # Once you have enabled test mode, all requests
+  # to OmniAuth will be short circuited
+  # to use the mock authentication hash.
+  # A request to /auth/provider will redirect
+  # immediately to /auth/provider/callback.
+
+    OmniAuth.config.test_mode = true
+
+# The mock_auth configuration allows you to
+  # set per-provider (or default) authentication
+  # hashes to return during testing.
+
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
+      { :provider => 'twitter', :uid => '123545', info:
+          {email: "a@b.com", name: "Ada"}
+    })
+
+    OmniAuth.config.mock_auth[:vimeo] = OmniAuth::AuthHash.new(
+      { :provider => 'vimeo', :uid => '123545', info:
+          { email: "a@b.com", name: "Ada" }
+        })
+    end
+
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
     # defined using `chain`, e.g.:
