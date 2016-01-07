@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'users#feed'
 
-  get "/auth/:provider/callback" => "sessions#create"
+  match "/auth/:provider/callback" => "sessions#create", via: [:get, :post]
   get "/login" => "sessions#new", as: :login
   delete "/logout/"              => "sessions#destroy", as: :logout
   get "/search/"                => "creators#search"

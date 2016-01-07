@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def create
     #can sign in with twitter or vimeo
     auth_hash = request.env['omniauth.auth']
