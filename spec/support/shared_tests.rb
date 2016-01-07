@@ -1,6 +1,6 @@
 include Rails.application.routes.url_helpers
 
-Rspec.shared_examples "an auth controller" do
+shared_examples_for "an auth controller" do
   context "when using auth_provider authentication" do
     context "is successful" do
       before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[auth_provider] }
@@ -23,7 +23,6 @@ Rspec.shared_examples "an auth controller" do
         get :create, provider: auth_provider
         expect(session[:user_id]).to eq assigns(:user).id
       end
-
     end
 
     context "when the user has already signed up" do
