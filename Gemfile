@@ -16,6 +16,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'omniauth'
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-vimeo"
 gem 'omniauth-twitter'
 
