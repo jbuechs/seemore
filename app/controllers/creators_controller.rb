@@ -11,7 +11,15 @@ class CreatorsController < ApplicationController
 
   #use private methods to determine which api to search
   def search
-    raise
+    if !params[:vimeoquery].nil?
+      # complete vimeo search
+      vimeo_search(params[:vimeoquery])
+    elsif !params[:twitterquery].nil?
+      # complete twitter search
+    else
+      # nothing in either search field
+    end
+
   end
 
   #remove a creator from a user's follow list
@@ -23,4 +31,5 @@ class CreatorsController < ApplicationController
     def vimeo_search(query)
       raise
     end
+
 end
