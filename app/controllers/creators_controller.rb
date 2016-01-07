@@ -1,4 +1,5 @@
 class CreatorsController < ApplicationController
+  include HTTParty
   #add an instance of a content creator to the database
   def create
 
@@ -29,6 +30,8 @@ class CreatorsController < ApplicationController
 
   private
     def vimeo_search(query)
+      response = HTTParty.get("https://api.vimeo.com/users?query=#{query}")
+
       raise
     end
 
