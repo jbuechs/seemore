@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'rails', '4.2.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,8 +16,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'omniauth'
+gem "omniauth-vimeo"
 gem 'omniauth-twitter'
-
 
 # TODO: Add gems for omniauth
 # gem 'omniauth-github'
