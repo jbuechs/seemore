@@ -13,5 +13,4 @@ RSpec.describe SessionsController, type: :controller do
       let(:auth_provider) { :vimeo }
     end
   end
-
 end
