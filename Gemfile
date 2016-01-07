@@ -23,6 +23,8 @@ gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-vimeo"
 gem 'omniauth-twitter'
 
+gem 'httparty'
+
 # TODO: Add gems for omniauth
 # gem 'omniauth-github'
 
