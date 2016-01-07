@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
 
-  root 'feeds#index'
+  get 'users/show'
+
+  get 'users/feed'
+
+  get 'users/delete'
+
+  get 'users/create'
+
+  root 'users#feed'
   get "/auth/:provider/callback" => "sessions#create"
   delete "/logout/"              => "sessions#destroy", as: :logout
-  post "/search/"                => "feeds#search"
-
+  get "/search/"                => "creators#search"
+  resources :users, only: [:show, :delete, :create]
 
 end
