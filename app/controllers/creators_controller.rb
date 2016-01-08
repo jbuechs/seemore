@@ -37,6 +37,7 @@ class CreatorsController < ApplicationController
     def twitter_search(query)
       twit = Seemore::Application.config.twitter
       @response = twit.user_search(query)[0].name
+      @tweet = twit.user_timeline(query)[0].text
     end
 
 end
