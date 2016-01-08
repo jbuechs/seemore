@@ -25,9 +25,6 @@ gem 'omniauth-twitter'
 
 gem 'httparty'
 
-# TODO: Add gems for omniauth
-# gem 'omniauth-github'
-
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
@@ -47,6 +44,7 @@ group :test do
 end
 
 group :development do
+  gem 'httplog'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'better_errors'
