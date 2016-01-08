@@ -1,10 +1,11 @@
 class SessionsController < ApplicationController
-  #this line is for the omniauth developer strategy login. TODO: check security of this work around. 
+  #this line is for the omniauth developer strategy login. TODO: check security of this work around.
   skip_before_filter :verify_authenticity_token, only: :create
 
   def create
     #can sign in with twitter or vimeo
     auth_hash = request.env['omniauth.auth']
+    binding.pry
     if auth_hash["uid"]
       @user = User.find_or_create_from_omniauth(auth_hash)
       if @user
