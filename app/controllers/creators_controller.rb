@@ -1,6 +1,7 @@
 class CreatorsController < ApplicationController
   include HTTParty
   LIMIT_PER_PAGE = 10
+
   #add an instance of a content creator to the database
   def create
 
@@ -17,12 +18,11 @@ class CreatorsController < ApplicationController
       # complete vimeo search
       vimeo_search(params[:vimeoquery])
     elsif !params[:twitterquery].nil?
-      # complete twitter search
-      raise
+      twitter_search(params[:twitterquery])
     else
       # nothing in either search field
     end
-    
+
   end
 
   #remove a creator from a user's follow list
@@ -56,6 +56,12 @@ class CreatorsController < ApplicationController
       else
         raise "Invalid type of input for API response"
       end
+    end
+
+    def twitter_search(query)
+      twit = Seemore::Application.config.twitter
+      @response = twit.user_search(query)[0].name
+      @tweet = twit.user_timeline(query)[0].text
     end
 
     # given a uri the method returns the vimeo user id
