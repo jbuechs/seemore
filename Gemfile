@@ -24,6 +24,7 @@ gem "omniauth-vimeo"
 gem 'omniauth-twitter'
 
 gem 'httparty'
+gem 'twitter'
 
 group :development, :test do
   gem 'byebug'
