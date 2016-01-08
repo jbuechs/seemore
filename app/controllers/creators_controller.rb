@@ -17,6 +17,7 @@ class CreatorsController < ApplicationController
       vimeo_search(params[:vimeoquery])
     elsif !params[:twitterquery].nil?
       # complete twitter search
+      raise
     else
       # nothing in either search field
     end
@@ -31,6 +32,7 @@ class CreatorsController < ApplicationController
   private
     def vimeo_search(query)
       response = HTTParty.get("https://api.vimeo.com/users?query=#{query}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
+
       raise
     end
 
