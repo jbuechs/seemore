@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108225555) do
+ActiveRecord::Schema.define(version: 20160108230950) do
 
   create_table "contents", force: :cascade do |t|
     t.integer  "content_id"
@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20160108225555) do
     t.integer  "favorites"
     t.string   "embed_code"
     t.integer  "retweet_count"
-    t.integer  "p_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "creator_id"
   end
 
-  add_index "contents", ["p_id"], name: "index_contents_on_p_id"
+  add_index "contents", ["creator_id"], name: "index_contents_on_creator_id"
 
   create_table "creators", force: :cascade do |t|
     t.integer  "p_id"
