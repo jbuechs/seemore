@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107184005) do
+ActiveRecord::Schema.define(version: 20160108225555) do
+
+  create_table "contents", force: :cascade do |t|
+    t.integer  "content_id"
+    t.string   "text"
+    t.string   "create_time"
+    t.integer  "favorites"
+    t.string   "embed_code"
+    t.integer  "retweet_count"
+    t.integer  "p_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "contents", ["p_id"], name: "index_contents_on_p_id"
+
+  create_table "creators", force: :cascade do |t|
+    t.integer  "p_id"
+    t.string   "provider"
+    t.string   "avatar_url"
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "uid"
