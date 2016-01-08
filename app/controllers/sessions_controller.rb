@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   def create
     #can sign in with twitter or vimeo
     auth_hash = request.env['omniauth.auth']
-    binding.pry
     if auth_hash["uid"]
       @user = User.find_or_create_from_omniauth(auth_hash)
       if @user
