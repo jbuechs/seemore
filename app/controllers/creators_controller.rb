@@ -8,10 +8,6 @@ class CreatorsController < ApplicationController
 
   end
 
-  #add a creator in a user's follow list
-  def update
-  end
-
   #use private methods to determine which api to search
   def search
     if !params[:vimeoquery].nil?
@@ -57,8 +53,12 @@ class CreatorsController < ApplicationController
       end
     end
 
+    #method to configure twitter
+    def twit
+      Seemore::Application.config.twitter
+    end
+    
     def twitter_search(query)
-      twit = Seemore::Application.config.twitter
       #searches for users
       tweet_users = twit.user_search(query)
       tweeters = []

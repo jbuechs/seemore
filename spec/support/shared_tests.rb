@@ -60,5 +60,16 @@ shared_examples_for "an auth controller" do
         expect(flash[:notice]).to include "Failed to save the user"
       end
     end
+
+    describe "destroy" do
+      it "removes user_id from session" do
+        delete :destroy
+        expect(session[:user_id]).to be_nil
+      end
+      it "redirects to login_path" do
+        delete :destroy
+        expect(subject).to redirect_to login_path
+      end
+    end
   end
 end
