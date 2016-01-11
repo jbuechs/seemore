@@ -16,7 +16,7 @@ class CreatorsController < ApplicationController
   def search
     if !params[:vimeoquery].nil?
       # complete vimeo search
-      vimeo_search(params[:vimeoquery])
+      @creators = vimeo_search(params[:vimeoquery])
     elsif !params[:twitterquery].nil?
       twitter_search(params[:twitterquery])
     else
