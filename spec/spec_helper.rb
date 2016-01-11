@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'rails_helper'
+require 'factory_girl'
 
 SimpleCov.start do
   add_filter 'spec/'
@@ -70,6 +71,8 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
+  config.include FactoryGirl::Syntax::Methods
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
