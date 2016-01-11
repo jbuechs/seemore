@@ -8,10 +8,6 @@ class CreatorsController < ApplicationController
 
   end
 
-  #add a creator in a user's follow list
-  def update
-  end
-
   #use private methods to determine which api to search
   def search
     if !params[:vimeoquery].nil?
