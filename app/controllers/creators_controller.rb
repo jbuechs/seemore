@@ -57,7 +57,7 @@ class CreatorsController < ApplicationController
     def twit
       Seemore::Application.config.twitter
     end
-    
+
     def twitter_search(query)
       #searches for users
       tweet_users = twit.user_search(query)
