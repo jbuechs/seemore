@@ -8,8 +8,6 @@ class UsersController < ApplicationController
     end
     #the following code is JUST FOR TESTING
     @tweets =  Seemore::Application.config.twitter.user_timeline("taylorswift13")
-    raise
-
   end
 
   def delete
