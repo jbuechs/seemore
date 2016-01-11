@@ -16,7 +16,7 @@ class CreatorsController < ApplicationController
   def search
     if !params[:vimeoquery].nil?
       # complete vimeo search
-      vimeo_search(params[:vimeoquery])
+      @creators = vimeo_search(params[:vimeoquery])
     elsif !params[:twitterquery].nil?
       twitter_search(params[:twitterquery])
     else
@@ -37,12 +37,11 @@ class CreatorsController < ApplicationController
       vim_users = json_res["data"]
       videographers = []
       vim_users.each do |user|
-        # create user objects
-        videographer = Videographer.new
-        # populate videographer fields
-        # videographer.uid = get_vimeo_id(user["uri"])
-        # videographer.name = user["name"]
-        # and so on
+        videographer = Creator.new
+        videographer.p_id = get_vimeo_id(user["uri"])
+        videographer.provider = "vimeo"
+        videographer.username = user["name"]
+        videographer.avatar_url = user["pictures"]["sizes"][2]["link"] if user["pictures"]
         # purposely do not save the videographer objects to the database,
         # as this is only for displaying
         videographers << videographer
