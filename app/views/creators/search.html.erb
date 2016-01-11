@@ -1,17 +1,22 @@
-
-<% @creators.each do |creator| %>
-  <%= creator.username %>
-  <% if creator.has_image?%>
-    <%= image_tag creator.avatar_url %>
-  <% else %>
-    <%= image_tag("noimage.png", size: "100x100") %>
+<div class="row">
+  <% @creators.each do |creator| %>
+    <div class="col-md-3 c-search">
+      Username: <%= creator.username %>
+      <br>
+      <% if creator.has_image?%>
+        <%= image_tag(creator.avatar_url, size: "100x100") %>
+      <% else %>
+        <%= image_tag("noimage.png", size: "100x100") %>
+      <% end %>
+      <br>
+      <%= form_tag(user_path(@current_user.id), method: :patch) do %>
+        <%= hidden_field_tag 'username', creator.username %>
+        <%= hidden_field_tag 'avatar_url', creator.avatar_url %>
+        <%= hidden_field_tag 'p_id', creator.p_id %>
+        <%= hidden_field_tag 'provider', creator.provider %>
+        <br>
+        <%= submit_tag("Follow", class: "btn btn-sm btn-warning") %>
+      <% end %>
+    </div>
   <% end %>
-  <%= form_tag(user_path(@current_user.id), method: :patch) do %>
-    <%= hidden_field_tag 'username', creator.username %>
-    <%= hidden_field_tag 'avatar_url', creator.avatar_url %>
-    <%= hidden_field_tag 'p_id', creator.p_id %>
-    <%= hidden_field_tag 'provider', creator.provider %>
-    <%= submit_tag("Update", class: "btn btn-sm btn-default") %>
-  <% end %>
-  <br>
-<% end %>
+</div>
