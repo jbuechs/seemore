@@ -1,20 +1,28 @@
-# javascript from twitter for oembed functionality
-<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
+<div id="tweet" tweetID="685974098833313793"></div>
 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
+<script sync src="https://platform.twitter.com/widgets.js"></script>
 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
-<h3>Your feed here. So pretty.</h3>
+<script>
 
-<blockquote class="twitter-tweet"><p>Why I joined Twitter - Andy Piper <a href="https://twitter.com/andypiper"></a><a href="https://twitter.com/intent/user?screen_name=andypiper">@andypiper</a>, Developer Advocate <a href="https://t.co/fQ796U9lq1">https://t.co/fQ796U9lq1</a></p>— TwitterDev (<a href="https://twitter.com/intent/user?screen_name=TwitterDev">@TwitterDev</a>) <a href="https://twitter.com/TwitterDev/statuses/482281320232415232">June 26, 2014</a></blockquote>
+  window.onload = (function(){
+
+    var tweet = document.getElementById("tweet");
+    var id = tweet.getAttribute("tweetID");
+
+    twttr.widgets.createTweet(
+      id, tweet,
+      {
+        conversation : 'none',    // or all
+        cards        : 'visible',  // or visible
+        linkColor    : '#ffffff', // default is blue
+        theme        : 'dark',    // or dark
+        width        : '550', // amount in pixels, between 250 and 550
+        align        : 'center' // float the Tweet left, right, or center
+      })
+    .then (function (el) {
+      el.contentDocument.querySelector(".footer").style.display = "none";
+    });
+
+  });
+
+</script>
