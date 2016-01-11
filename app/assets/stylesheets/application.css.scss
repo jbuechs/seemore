@@ -15,3 +15,40 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .nav-center {
+    margin:0;
+    float:none;
+}
+
+.navbar-inner{
+    text-align:center;
+}
+
+.navbar {
+    position: relative;
+    background: #FFFFFF;
+
+}
+.brand {
+    position: absolute;
+    left: 50%;
+    margin-left: -275px !important;  /* 50% of your logo width */
+    margin-top: -50px;
+    display: block;
+}
+
+.jumbotron {
+   height: 200px;
+   background: #FFFFFF;
+}
+
+.logo {
+   position: absolute;
+   left: 0px;
+   top: 24px;
+}
+
+.main-content {
+  background: #000000;
+}

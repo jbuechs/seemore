@@ -1,24 +1,13 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">
-        <%= link_to image_tag("illuminapeye.png"), root_path, class: "navbar-brand" %>
-      </a>
-      <ul class="nav navbar-nav navbar-right">
-      <h1>illuminAPI</h1>
-      <h4>api powered light in the</h4>
-      <h4>social media darkness</h4>
-    </ul>
+    <div class="jumbotron container-fluid">
+      <%= link_to image_tag("illuminapeye.png"), root_path, class: "navbar brand" %>
     </div>
-  </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <% if @current_user %>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <%= form_tag({controller: "creators", action: "search"}, method: "get", class: "navbar-form navbar-left") do %>
-        <div class="form-group">
           <%= text_field_tag :twitterquery, params[:query], placeholder: "Search Twitter", class: "form-control" %>
           <%= submit_tag("Illuminate", class: "btn btn-default") %>
-        </div>
         <% end %>
 
         <%= form_tag({controller: "creators", action: "search"}, method: "get", class: "navbar-form navbar-left") do %>
@@ -30,6 +19,7 @@
           <li><%= link_to "Feed Manager", user_path(@current_user.id) %></li>
           <li><%= link_to "Log Out", logout_path, method: :delete %></li>
         </ul>
-      </div><!-- /.navbar-collapse -->
+      </div>
     <% end %>
+  </div>
 </nav>
