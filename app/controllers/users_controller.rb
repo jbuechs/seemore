@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if !creator.exists?
       # if the creator does not exist, create creator and add to user's list
       creator = Creator.create(creator_hash(params))
-      # load creator's tweets/videos into database?
+      creator.get_content
     end
     current_user.creators << creator
     flash[:notice] = "#{creator.username} has been added to your feed!"

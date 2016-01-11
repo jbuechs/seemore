@@ -10,4 +10,20 @@ class Creator < ActiveRecord::Base
       true
     end
   end
+
+  def get_content
+    if provider == "twitter"
+      get_tweets
+    else
+      get_videos
+    end
+  end
+
+  def get_tweets
+    # api call to get the tweets and save to database
+  end
+
+  def get_videos
+    # api call to get the videos and save to database
+  end
 end
