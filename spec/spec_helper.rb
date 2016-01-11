@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'rails_helper'
+require 'factory_girl'
 
 SimpleCov.start do
   add_filter 'spec/'
