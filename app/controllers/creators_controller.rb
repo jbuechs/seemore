@@ -4,6 +4,7 @@ class CreatorsController < ApplicationController
 
   #add an instance of a content creator to the database
   def create
+    @tweet = twit.user_timeline(params[:username])[0].text
 
   end
 
@@ -15,7 +16,7 @@ class CreatorsController < ApplicationController
   def search
     if !params[:vimeoquery].nil?
       # complete vimeo search
-      @creators = vimeo_search(params[:vimeoquery])
+      vimeo_search(params[:vimeoquery])
     elsif !params[:twitterquery].nil?
       twitter_search(params[:twitterquery])
     else
@@ -36,11 +37,12 @@ class CreatorsController < ApplicationController
       vim_users = json_res["data"]
       videographers = []
       vim_users.each do |user|
-        videographer = Creator.new
-        videographer.p_id = get_vimeo_id(user["uri"])
-        videographer.provider = "vimeo"
-        videographer.username = user["name"]
-        videographer.avatar_url = user["pictures"]["sizes"][2]["link"] if user["pictures"]
+        # create user objects
+        videographer = Videographer.new
+        # populate videographer fields
+        # videographer.uid = get_vimeo_id(user["uri"])
+        # videographer.name = user["name"]
+        # and so on
         # purposely do not save the videographer objects to the database,
         # as this is only for displaying
         videographers << videographer
@@ -58,8 +60,21 @@ class CreatorsController < ApplicationController
 
     def twitter_search(query)
       twit = Seemore::Application.config.twitter
-      @response = twit.user_search(query)[0].name
-      @tweet = twit.user_timeline(query)[0].text
+      #searches for users
+      tweet_users = twit.user_search(query)
+      @tweeters = []
+      #makes a new creator for each returned object from twitter query
+      tweet_users.each do |user|
+        tweeter = Creator.new(
+          p_id: user.id,
+          provider: "twitter",
+          avatar_url: user.profile_image_url,
+          username: user.screen_name,
+        )
+        @tweeters << tweeter
+      end
+      #returns an array of twitter creators
+      return @tweeters
     end
 
     # given a uri the method returns the vimeo user id
