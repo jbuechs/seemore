@@ -14,8 +14,10 @@ class Creator < ActiveRecord::Base
   def get_content
     if provider == "twitter"
       get_tweets
-    else
+    elsif provider == "vimeo"
       get_videos
+    else
+      raise "Content provider provided is not recognized (vimeo, twitter)."
     end
   end
 
