@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/login" => "sessions#new", as: :login
   delete "/logout/"              => "sessions#destroy", as: :logout
   get "/search/"                => "creators#search"
-  resources :users, only: [:show, :delete, :create]
+  resources :users, only: [:show, :delete, :create, :update]
 
 
 end
