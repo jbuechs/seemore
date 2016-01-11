@@ -1,28 +1,30 @@
-<div id="tweet" tweetID="685974098833313793"></div>
+<% @tweets.each do |tweet|
+  <div id="tweet" tweetID="#{tweet.id}"></div>
 
-<script sync src="https://platform.twitter.com/widgets.js"></script>
+  <script sync src="https://platform.twitter.com/widgets.js"></script>
 
-<script>
+  <script>
 
-  window.onload = (function(){
+    window.onload = (function(){
 
-    var tweet = document.getElementById("tweet");
-    var id = tweet.getAttribute("tweetID");
+      var tweet = document.getElementById("tweet");
+      var id = tweet.getAttribute("tweetID");
 
-    twttr.widgets.createTweet(
-      id, tweet,
-      {
-        conversation : 'none',    // or all
-        cards        : 'visible',  // or visible
-        linkColor    : '#ffffff', // default is blue
-        theme        : 'dark',    // or dark
-        width        : '550', // amount in pixels, between 250 and 550
-        align        : 'center' // float the Tweet left, right, or center
-      })
-    .then (function (el) {
-      el.contentDocument.querySelector(".footer").style.display = "none";
+      twttr.widgets.createTweet(
+        id, tweet,
+        {
+          conversation : 'none',    // or all
+          cards        : 'visible',  // or visible
+          linkColor    : '#ffffff', // default is blue
+          theme        : 'dark',    // or dark
+          width        : '550', // amount in pixels, between 250 and 550
+          align        : 'center' // float the Tweet left, right, or center
+        })
+      .then (function (el) {
+        el.contentDocument.querySelector(".footer").style.display = "none";
+      });
+
     });
 
-  });
-
-</script>
+  </script>
+<% end %>

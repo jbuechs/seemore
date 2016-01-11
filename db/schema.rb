@@ -52,4 +52,12 @@ ActiveRecord::Schema.define(version: 20160111193034) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users_creators", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "creator_id"
+  end
+
+  add_index "users_creators", ["creator_id"], name: "index_users_creators_on_creator_id"
+  add_index "users_creators", ["user_id"], name: "index_users_creators_on_user_id"
+
 end
