@@ -21,11 +21,6 @@ class CreatorsController < ApplicationController
 
   end
 
-  #remove a creator from a user's follow list
-  def delete
-
-  end
-
   private
     def vimeo_search(query)
        response = HTTParty.get("https://api.vimeo.com/users?per_page=#{LIMIT_PER_PAGE}&query=#{query}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})

@@ -1,37 +1,37 @@
-  <script>
+<script sync src="https://platform.twitter.com/widgets.js"></script>
 
+<script>
     window.onload = (function(){
 
-      var tweet = document.getElementById("tweet");
-      var id = tweet.getAttribute("tweetID");
+      var tweetList = $(".tweet");
 
-      twttr.widgets.createTweet(
-        id, tweet,
-        {
-          conversation : 'none',    // or all
-          cards        : 'visible',  // or visible
-          linkColor    : '#ffffff', // default is blue
-          theme        : 'dark',    // or dark
-          width        : '550', // amount in pixels, between 250 and 550
-          align        : 'center' // float the Tweet left, right, or center
-        })
-      .then (function (el) {
-        el.contentDocument.querySelector(".footer").style.display = "none";
-      });
+      for (var i = 0; i < tweetList.length; i++) {
+        var id = tweetList[i].getAttribute("tweetID");
 
+        twttr.widgets.createTweet(
+          id, tweetList[i],
+          {
+            conversation : 'none',    // or all
+            cards        : 'visible',  // or visible
+            linkColor    : '#EDA83C', // default is blue
+            theme        : 'dark',    // or dark
+            width        : '550', // amount in pixels, between 250 and 550
+            align        : 'center' // float the Tweet left, right, or center
+          });
+      }
     });
 
 </script>
 
 <div class="video"> <iframe src="//player.vimeo.com/video/76979871" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-<div id="tweet" tweetID="685974098833313793"></div>
+<div class="tweet" tweetID="685974098833313793"></div>
 
-<div id="tweet" tweetID="672268372868923393"></div>
+<div class="tweet" tweetID="672268372868923393"></div>
 
 <div class="video"> <iframe src="//player.vimeo.com/video/150929970" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-<div id="tweet" tweetID="685326257530208256"></div>
+<div class="tweet" tweetID="685326257530208256"></div>
 
 <div class="video"> <iframe src="//player.vimeo.com/video/151125689" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 

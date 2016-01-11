@@ -24,10 +24,23 @@ class UsersController < ApplicationController
       # if the creator does not exist, create creator and add to user's list
       creator = Creator.create(creator_hash(params))
       creator.get_content
+    else
+    # Creator.where method returns an array of creators. Need to pull out the first
+      creator = creator.first
     end
-    current_user.creators << creator
+    current_user.creators << creator if current_user.creators
     flash[:notice] = "#{creator.username} has been added to your feed!"
     redirect_to root_path
+  end
+
+  #remove a creator from a user's follow list
+  def delete_creator
+    # somehow search for creator based on params
+    # creator = Creator.where("provider = ? AND p_id = ?", params["provider"], params["p_id"])
+    # remove creator from user's list
+    # self.creators.delete(creator)
+    # if the creator is no longer followed, delete it
+    # creator.delete if creator.users.nil?
   end
 
   private
