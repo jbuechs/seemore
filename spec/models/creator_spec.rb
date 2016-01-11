@@ -6,7 +6,7 @@ RSpec.describe Creator, type: :model do
   it { is_expected.to validate_presence_of(:username) }
 
   describe "has_image?" do
-    let(:creator) { FactoryGirl.create(:creator) }
+    let(:creator) { build(:creator) }
     it "returns true when creator object has image" do
       creator.avatar_url = "abc"
       expect(creator.has_image?).to be true
