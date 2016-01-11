@@ -18,7 +18,7 @@ class CreatorsController < ApplicationController
       # complete vimeo search
       @creators = vimeo_search(params[:vimeoquery])
     elsif !params[:twitterquery].nil?
-      twitter_search(params[:twitterquery])
+      @creators = twitter_search(params[:twitterquery])
     else
       # nothing in either search field
     end
@@ -61,7 +61,7 @@ class CreatorsController < ApplicationController
       twit = Seemore::Application.config.twitter
       #searches for users
       tweet_users = twit.user_search(query)
-      @tweeters = []
+      tweeters = []
       #makes a new creator for each returned object from twitter query
       tweet_users.each do |user|
         tweeter = Creator.new(
@@ -70,10 +70,10 @@ class CreatorsController < ApplicationController
           avatar_url: user.profile_image_url,
           username: user.screen_name,
         )
-        @tweeters << tweeter
+        tweeters << tweeter
       end
       #returns an array of twitter creators
-      return @tweeters
+      return tweeters
     end
 
     # given a uri the method returns the vimeo user id
