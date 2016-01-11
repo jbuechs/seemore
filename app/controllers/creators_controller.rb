@@ -61,8 +61,10 @@ class CreatorsController < ApplicationController
 
     def twitter_search(query)
       twit = Seemore::Application.config.twitter
+      #searches for users
       tweet_users = twit.user_search(query)
       @tweeters = []
+      #makes a new creator for each returned object from twitter query
       tweet_users.each do |user|
         tweeter = Creator.new(
           p_id: user.id,
@@ -72,6 +74,7 @@ class CreatorsController < ApplicationController
         )
         @tweeters << tweeter
       end
+      #returns an array of twitter creators
       return @tweeters
     end
 
