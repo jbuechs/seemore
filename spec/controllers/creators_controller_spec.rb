@@ -22,18 +22,18 @@ RSpec.describe CreatorsController, type: :controller do
         expect(subject).to redirect_to root_path
       end
     end
-    # context "vimeo query" do
-    #   it "redirects to search page" do
-    #     get :search, vimeo_search_params
-    #     expect(subject).to redirect_to :search
-    #
-    #   end
-    # end
-    # context "twitter query" do
-    #   it "returns an array of Creators from twitter" do
-    #
-    #   end
-    # end
+    context "vimeo query" do
+      it "redirects to search page" do
+        get :search, vimeo_search_params
+        expect(subject).to render_template :search
+      end
+    end
+    context "twitter query" do
+      it "returns an array of Creators from twitter" do
+        get :search, twitter_search_params
+        expect(subject).to render_template :search
+      end
+    end
   end
 
 end
