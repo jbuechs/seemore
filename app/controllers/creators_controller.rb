@@ -2,11 +2,11 @@ class CreatorsController < ApplicationController
   include HTTParty
   LIMIT_PER_PAGE = 10
 
-  #add an instance of a content creator to the database
-  def create
-    @tweet = twit.user_timeline(params[:username])[0].text
-
-  end
+  # #add an instance of a content creator to the database
+  # def create
+  #   @tweet = twit.user_timeline(params[:username])[0].text
+  #
+  # end
 
   #use private methods to determine which api to search
   def search
