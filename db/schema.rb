@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112171348) do
+ActiveRecord::Schema.define(version: 20160112175253) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "content_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160112171348) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "creator_id"
+    t.string   "provider"
   end
 
   add_index "contents", ["creator_id"], name: "index_contents_on_creator_id"
