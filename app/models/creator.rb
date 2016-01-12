@@ -31,8 +31,19 @@ class Creator < ActiveRecord::Base
     end
   end
 
-  def get_tweets(username)
-    @tweets = twit.user_timeline(twitter_user)
+  def get_tweets
+    tweeties = twit.user_timeline(self.username)
+    tweets = []
+    tweeties.each do |tweet|
+      tweets << Content.create(
+      content_id: tweet.id,
+      text: tweet.text,
+      create_time: tweet.created_at,
+      favorites: tweet.favorited?,
+      retweet_count: tweet.retweet_count,
+      creator_id: self.id
+      )
+    end
   end
 
   def get_videos
