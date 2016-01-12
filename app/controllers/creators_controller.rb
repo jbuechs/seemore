@@ -66,7 +66,6 @@ class CreatorsController < ApplicationController
           username: user.screen_name,
         )
         tweeters << tweeter
-        raise
       end
       #returns an array of twitter creators
       return tweeters
@@ -75,7 +74,7 @@ class CreatorsController < ApplicationController
     # given a uri the method returns the vimeo user id
     # example: given "/users/12901182" the method returns 12901182
     def get_vimeo_id(uri)
-      return uri.sub("/users/", "").to_i
+      return uri.sub("/users/", "")
     end
 
 

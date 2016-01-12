@@ -36,7 +36,7 @@ class Creator < ActiveRecord::Base
     tweets = []
     tweeties.each do |tweet|
       tweets << Content.create(
-      content_id: tweet.id,
+      content_id: tweet.id_str,
       text: tweet.text,
       create_time: tweet.created_at,
       favorites: tweet.favorited?,
@@ -54,7 +54,7 @@ class Creator < ActiveRecord::Base
 
     vids.each do |vid|
       videos << Content.create(
-        content_id: vid["uri"].gsub(/[^\d]/, ''),
+        content_id: vid["uri"].sub("/users/", ""),
         text: vid["description"],
         create_time: vid["created_time"],
         favorites: vid["metadata"]["connections"]["likes"]["total"],
