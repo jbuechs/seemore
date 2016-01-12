@@ -10,4 +10,10 @@ FactoryGirl.define do
     username "HELLO, SAVANTS!"
     provider "vimeo"
   end
+
+  factory :developer_user, class: User do
+    name "Ada Lovelace"
+    uid 1234
+    provider "developer"
+  end
 end
