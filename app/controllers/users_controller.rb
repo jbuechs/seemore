@@ -23,15 +23,16 @@ class UsersController < ApplicationController
 
   # adds a creator to the user's list
   def update
-    # if the creator already exists, get the creator and add to user's list
-    creator = current_user.following(params["provider"], params["p_id"])
-    if creator.nil?
-      # if the creator does not exist, create creator and add to user's list
-      creator = Creator.create(creator_hash(params))
-      creator.get_content
+    creator, following = current_user.following(params["provider"], params["p_id"])
+    if !following
+      if creator.nil?
+      # if the creator does not exist, create creator
+        creator = Creator.create(creator_hash(params))
+        creator.get_content
+      end
+      current_user.creators << creator
+      flash[:notice] = "#{creator.username} has been added to your feed!"
     end
-    current_user.creators << creator
-    flash[:notice] = "#{creator.username} has been added to your feed!"
     redirect_to root_path
   end
 

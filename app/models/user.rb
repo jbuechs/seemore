@@ -21,10 +21,18 @@ class User < ActiveRecord::Base
   end
 
   # method checks if the user is already following the creator
-  # if so, returns the creator object. otherwise returns nil
+  # returns creator object/nil and boolean indicating whether user is already following creator
   def following(provider, p_id)
-    creator = Creator.where("provider = ? AND p_id = ?", provider, p_id)
-    creator.exists? ? creator.first : nil
+    creator = Creator.where("provider = ? AND p_id = ?", provider, p_id).first
+    if creator.nil?
+      # creator does not exist and user is not following it
+      return nil, false
+    elsif creators.include?(creator)
+      # creator exists and user is following it
+      return creator, true
+    else
+      # creator exists but user not following it
+      return creator, false
+    end
   end
-
 end
