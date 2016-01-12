@@ -36,11 +36,7 @@ class CreatorsController < ApplicationController
     end
 
     def convert_to_json(httparty_response)
-      if httparty_response.class == HTTParty::Response
-        return JSON.parse(httparty_response.parsed_response)
-      else
-        raise "Invalid type of input for API response"
-      end
+      return JSON.parse(httparty_response.parsed_response)
     end
 
     #method to configure twitter
