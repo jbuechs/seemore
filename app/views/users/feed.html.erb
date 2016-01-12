@@ -23,16 +23,16 @@
 
 </script>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/76979871" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<% @contents.each do |content| %>
 
-<div class="tweet" tweetID="685974098833313793"></div>
+  <% if content.provider == "twitter" %>
 
-<div class="tweet" tweetID="672268372868923393"></div>
+    <div class="video"> <iframe src="//player.vimeo.com/video/#{content.id}" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/150929970" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+  <% elsif content.provider == "vimeo" %>
 
-<div class="tweet" tweetID="685326257530208256"></div>
+    <div class="tweet" tweetID="#{content_id}"></div>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/151125689" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+  <% end %>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/149498844" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<% end %>

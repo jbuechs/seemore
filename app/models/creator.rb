@@ -36,12 +36,13 @@ class Creator < ActiveRecord::Base
     tweets = []
     tweeties.each do |tweet|
       tweets << Content.create(
-      content_id: tweet.id_str,
+      content_id: tweet.id.to_s,
       text: tweet.text,
       create_time: tweet.created_at,
       favorites: tweet.favorited?,
       retweet_count: tweet.retweet_count,
-      creator_id: self.id
+      creator_id: self.id,
+      provider: "twitter"
       )
     end
   end
@@ -59,7 +60,8 @@ class Creator < ActiveRecord::Base
         create_time: vid["created_time"],
         favorites: vid["metadata"]["connections"]["likes"]["total"],
         retweet_count: nil,
-        creator_id: self.id
+        creator_id: self.id,
+        provider: "vimeo"
       )
     end
     return videos

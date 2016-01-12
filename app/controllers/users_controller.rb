@@ -6,8 +6,8 @@ class UsersController < ApplicationController
     if session[:user_id].nil?
       redirect_to login_path
     end
-    #the following code is JUST FOR TESTING
-    @tweets =  Seemore::Application.config.twitter.user_timeline("bumbbles21")
+
+    @contents = current_user.creators
   end
 
   def delete
