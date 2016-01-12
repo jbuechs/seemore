@@ -96,3 +96,21 @@ input[type=text]:focus, textarea:focus {
   margin-top: 50px;
   text-align: center;
 }
+
+.twitter-color {
+  color: #55acee;
+}
+
+.vimeo-color {
+  color: #1ab7ea;
+}
+
+.feed-manager {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+  display:inline-block;
+  width: 275px;
+}

@@ -1,6 +1,6 @@
 <div class="row row-centered">
   <% @creators.each do |creator| %>
-    <div class="col-md-3 c-search">
+    <div class="col-md-3 feed-manager">
       <div class="col-md-6">
         <% if creator.has_image?%>
           <%= image_tag(creator.avatar_url, size:"100x100", class:"display-img") %>
@@ -9,9 +9,15 @@
         <% end %>
       </div>
       <div class="col-md-6">
+        <% if creator.provider == "twitter" %>
+          <i class="fa fa-twitter twitter-color"></i>
+        <% elsif creator.provider == "vimeo" %>
+          <i class="fa fa-vimeo vimeo-color"></i>
+        <% end %>
         <strong><%= creator.username %></strong>
-        <br>
-        <%= link_to "Unfollow", class:"btn btn-sm btn-warning" %>
+        <br><br>
+        <!-- TODO: add correct path to disconnect creator from user -->
+        <%= link_to "✖︎", root_path, class:"btn btn-sm btn-danger" %>
       </div>
     </div>
   <% end %>
