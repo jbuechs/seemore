@@ -45,6 +45,7 @@ class Creator < ActiveRecord::Base
       provider: "twitter"
       )
     end
+    return tweets
   end
 
   def get_videos
