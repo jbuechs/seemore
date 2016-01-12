@@ -1,4 +1,8 @@
 <div class="row row-centered">
+  <% if @creators.length == 0 %>
+   <h3>You are not currently following any accounts. Use the illuminate search bar above to begin.</h3>
+  <% end %>
+
   <% @creators.each do |creator| %>
     <div class="col-md-4 feed-manager">
       <% if creator.has_image?%>
