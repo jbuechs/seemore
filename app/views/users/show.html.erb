@@ -1,2 +1,18 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row row-centered">
+  <% @creators.each do |creator| %>
+    <div class="col-md-3 c-search">
+      <div class="col-md-6">
+        <% if creator.has_image?%>
+          <%= image_tag(creator.avatar_url, size:"100x100", class:"display-img") %>
+        <% else %>
+          <%= image_tag("noimage.png", size:"100x100") %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <strong><%= creator.username %></strong>
+        <br>
+        <%= link_to "Unfollow", class:"btn btn-sm btn-warning" %>
+      </div>
+    </div>
+  <% end %>
+</div>

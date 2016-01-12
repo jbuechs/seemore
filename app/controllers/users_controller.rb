@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+    @creators = current_user.creators
   end
 
   def feed
