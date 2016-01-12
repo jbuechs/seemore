@@ -12,7 +12,12 @@ class UsersController < ApplicationController
     current_user.creators.each do |creator|
       @contents << creator.get_content.flatten
     end
-    @contents = @contents.flatten
+    @contents = @contents.flatten.sort_by! do |content|
+      content[:create_time]
+    end
+    @contents = @contents.reverse
+    @contents = @contents.take(10)
+    return @contents
   end
 
   def delete
