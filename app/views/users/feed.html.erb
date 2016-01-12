@@ -23,11 +23,18 @@
 
 </script>
 
-<% @content = [] %>
+<!-- This code will be used to cycle through the content objects and print them out to the feed -->
 
-<div class="video"> <iframe src="//player.vimeo.com/video/76979871" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<%# @contents.each do |content| %>
+  <%# id = content.content_id %>
+  <%# if content.Creator.provider == "twitter" %>
+    <!-- <div class="tweet" tweetID="<%# id %>"></div> -->
+  <%# else %>
+    <!-- <div class="video"> <iframe src="//player.vimeo.com/video/<%# id %>" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div> -->
+  <%# end %>
+<%# end %>
 
-<div class="tweet" tweetID="685974098833313793"></div>
+ <!-- Below is sample hard coded tweets and videos for demonstaration -->
 
 <div class="tweet" tweetID="672268372868923393"></div>
 
