@@ -9,16 +9,16 @@
         <% end %>
       </div>
       <div class="col-md-6">
-      <strong><%= creator.username %></strong>
-      <br>
-      <%= form_tag(user_path(@current_user.id), method: :patch) do %>
-        <%= hidden_field_tag 'username', creator.username %>
-        <%= hidden_field_tag 'avatar_url', creator.avatar_url %>
-        <%= hidden_field_tag 'p_id', creator.p_id %>
-        <%= hidden_field_tag 'provider', creator.provider %>
+        <strong><%= creator.username %></strong>
         <br>
-        <%= submit_tag("✚ Follow", class: "btn btn-sm btn-warning") %>
-      <% end %>
+        <%= form_tag(user_path(@current_user.id), method: :patch) do %>
+          <%= hidden_field_tag 'username', creator.username %>
+          <%= hidden_field_tag 'avatar_url', creator.avatar_url %>
+          <%= hidden_field_tag 'p_id', creator.p_id %>
+          <%= hidden_field_tag 'provider', creator.provider %>
+          <br>
+          <%= submit_tag("✚ Follow", class: "btn btn-sm btn-warning") %>
+        <% end %>
       </div>
     </div>
   <% end %>
