@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     end
     #the following code is JUST FOR TESTING
-    @tweets =  Seemore::Application.config.twitter.user_timeline("taylorswift13")
+    @tweets =  Seemore::Application.config.twitter.user_timeline("bumbbles21")
   end
 
   def delete
