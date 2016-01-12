@@ -56,18 +56,25 @@
 .video {
   text-align: center;
 }
+
 .row-centered {
   text-align: center;
   margin-left: 25px;
 }
+
 .c-search {
-  background-color: rgba(253, 253, 253, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   margin: 15px;
-  padding: 7px;
+  padding: 10px;
   text-align: center;
   display:inline-block;
   width: 240px;
+  overflow: scroll;
+}
+
+.display-img {
+  border-radius: 50%;
 }
 
 input[type=text], textarea {
@@ -83,4 +90,9 @@ input[type=text]:focus, textarea:focus {
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid #EDA83C;
+}
+
+.login {
+  margin-top: 50px;
+  text-align: center;
 }

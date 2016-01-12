@@ -16,7 +16,7 @@
         <% end %>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Feed Manager", user_path(@current_user.id) %></li>
+          <li><%= link_to '<i class="fa fa-cog"></i> Feed Manager'.html_safe, user_path(@current_user.id) %></li>
           <li><%= link_to "Log Out", logout_path, method: :delete %></li>
         </ul>
       </div>
