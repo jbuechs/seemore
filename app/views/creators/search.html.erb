@@ -21,7 +21,8 @@
           <%= hidden_field_tag 'p_id', creator.p_id %>
           <%= hidden_field_tag 'provider', creator.provider %>
           <br>
-          <% if !@current_user.following(creator.provider, creator.p_id) %>
+          <% following = @current_user.following(creator.provider, creator.p_id)[1] %>
+          <% if !following %>
             <%= submit_tag("✚ Follow", class: "btn btn-sm btn-warning") %>
           <% else %>
             <button type="button" disabled="diabled" class="btn btn-sm btn-warning">
