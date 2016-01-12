@@ -14,7 +14,7 @@
             conversation : 'none',    // or all
             cards        : 'visible',  // or visible
             linkColor    : '#EDA83C', // default is blue
-            theme        : 'dark',    // or dark
+            theme        : 'light',    // or dark
             width        : '550', // amount in pixels, between 250 and 550
             align        : 'center' // float the Tweet left, right, or center
           });
@@ -25,13 +25,13 @@
 
 <% @contents.each do |content| %>
 
-  <% if content.provider == "twitter" %>
+  <% if content.provider == "vimeo" %>
 
-    <div class="video"> <iframe src="//player.vimeo.com/video/#{content.id}" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+    <div class="video"> <iframe src="//player.vimeo.com/video/<%= content.content_id %>" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-  <% elsif content.provider == "vimeo" %>
+  <% elsif content.provider == "twitter" %>
 
-    <div class="tweet" tweetID="#{content_id}"></div>
+    <div class="tweet" tweetID="<%= content.content_id %>"></div>
 
   <% end %>
 
