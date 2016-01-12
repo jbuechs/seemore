@@ -1,6 +1,6 @@
 class CreatorsController < ApplicationController
   include HTTParty
-  LIMIT_PER_PAGE = 2
+  LIMIT_PER_PAGE = 10
 
   #add an instance of a content creator to the database
   def create
@@ -62,7 +62,7 @@ class CreatorsController < ApplicationController
         tweeter = Creator.new(
           p_id: user.id,
           provider: "twitter",
-          avatar_url: user.profile_image_url,
+          avatar_url: user.profile_image_url(size = :original),
           username: user.screen_name,
         )
         tweeters << tweeter
