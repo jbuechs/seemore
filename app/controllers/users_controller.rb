@@ -8,7 +8,11 @@ class UsersController < ApplicationController
       redirect_to login_path
     end
 
-    @contents = current_user.creators
+    @contents = []
+    current_user.creators.each do |creator|
+      @contents << creator.get_content.flatten
+    end
+    @contents = @contents.flatten
   end
 
   def delete
