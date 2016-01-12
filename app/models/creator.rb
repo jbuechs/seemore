@@ -48,6 +48,12 @@ class Creator < ActiveRecord::Base
     return tweets
   end
 
+  def find_or_save_tweets(tweet_array)
+  end
+
+  def get_saved_tweets
+  end
+
   def get_videos
     response = HTTParty.get("https://api.vimeo.com/users/#{self.p_id}/videos?per_page=#{LIMIT_PER_PAGE}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
     parsed_response = JSON.parse(response)

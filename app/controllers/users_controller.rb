@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     if session[:user_id].nil?
       redirect_to login_path
     else
-
       @contents = []
       current_user.creators.each do |creator|
         @contents << creator.get_content.flatten
@@ -16,7 +15,6 @@ class UsersController < ApplicationController
         content[:create_time]
       end
       @contents = @contents.reverse.take(10)
-      return @contents
     end
   end
 
