@@ -1,10 +1,12 @@
+require 'pry'
+
 class Creator < ActiveRecord::Base
   has_many :content
   has_and_belongs_to_many :users
   validates :p_id, :provider, :username, presence: true
 
   include HTTParty
-  LIMIT_PER_PAGE = 10
+  LIMIT_PER_PAGE = 1
 
   #method to configure twitter
   def twit
@@ -41,11 +43,10 @@ class Creator < ActiveRecord::Base
 
     vids.each do |vid|
       videos << Content.create(
-        content_id: vid["uri"],
+        content_id: vid["uri"].gsub(/[^\d]/, ''),
         text: vid["description"],
         create_time: vid["created_time"],
-        favorites: nil,
-        embed_code: vid["embed"],
+        favorites: vid["metadata"]["connections"]["likes"]["total"],
         retweet_count: nil,
         creator_id: self.id
       )
