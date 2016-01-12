@@ -17,13 +17,24 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:creators)).to eq creators
     end
   end
-  # describe "GET #show" do
-  #
-  # end
-  #
-  # describe "GET #feed" do
-  #
-  # end
+
+  describe "GET #feed" do
+    context "user is not logged in" do
+      it "redirects to login_path" do
+        get :feed, {id: user.id}, user_id: nil
+        expect(subject).to redirect_to login_path
+      end
+    end
+    context "user is logged in" do
+      it "renders feed template" do
+        get :feed, {id: user.id}, user_id: user.id
+        expect(subject).to render_template :feed
+      end
+      it "assigns current user's content to @content" do
+
+      end
+    end
+  end
   #
   # describe "GET #delete" do
   #
