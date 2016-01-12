@@ -10,6 +10,7 @@
 <body class="main-content">
   <%= render 'layouts/navbar' %>
   <div class="container">
+    <%= render partial: "shared/flash_messages", flash: flash %>
     <%= yield %>
   </div>
 </body>

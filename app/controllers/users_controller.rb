@@ -24,16 +24,13 @@ class UsersController < ApplicationController
   # adds a creator to the user's list
   def update
     # if the creator already exists, get the creator and add to user's list
-    creator = Creator.where("provider = ? AND p_id = ?", params["provider"], params["p_id"])
-    if !creator.exists?
+    creator = current_user.following(params["provider"], params["p_id"])
+    if creator.nil?
       # if the creator does not exist, create creator and add to user's list
       creator = Creator.create(creator_hash(params))
       creator.get_content
-    else
-    # Creator.where method returns an array of creators. Need to pull out the first
-      creator = creator.first
     end
-    current_user.creators << creator if current_user.creators
+    current_user.creators << creator
     flash[:notice] = "#{creator.username} has been added to your feed!"
     redirect_to root_path
   end
