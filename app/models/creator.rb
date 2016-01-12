@@ -56,7 +56,7 @@ class Creator < ActiveRecord::Base
 
     vids.each do |vid|
       videos << Content.create(
-        content_id: vid["uri"].sub("/users/", ""),
+        content_id: vid["uri"].gsub(/[^\d]/, ''),
         text: vid["description"],
         create_time: vid["created_time"],
         favorites: vid["metadata"]["connections"]["likes"]["total"],
