@@ -25,9 +25,13 @@ class UsersController < ApplicationController
       # if the creator does not exist, create creator and add to user's list
       creator = Creator.create(creator_hash(params))
       creator.get_content
+      current_user.creators << creator if current_user.creators
+      flash[:notice] = "#{creator.username} has been added to your feed!"
+    else
+      flash.now[:notice] = "You are already following #{creator.username}"
+      render "creators/search"
     end
-    current_user.creators << creator if current_user.creators
-    flash[:notice] = "#{creator.username} has been added to your feed!"
+
     redirect_to root_path
   end
 
