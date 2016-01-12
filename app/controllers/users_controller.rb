@@ -15,8 +15,7 @@ class UsersController < ApplicationController
     @contents = @contents.flatten.sort_by! do |content|
       content[:create_time]
     end
-    @contents = @contents.reverse
-    @contents = @contents.take(10)
+    @contents = @contents.reverse.take(10)
     return @contents
   end
 
