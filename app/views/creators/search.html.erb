@@ -1,4 +1,8 @@
 <div class="row row-centered">
+  <% if @creators.length == 0 %>
+   <h3>Sorry, your search did not come up with any results.</h3>
+  <% end %>
+
   <% @creators.each do |creator| %>
     <div class="col-md-3 c-search">
       <div class="col-md-6">
