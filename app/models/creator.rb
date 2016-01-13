@@ -47,7 +47,7 @@ class Creator < ActiveRecord::Base
         tweets << Content.create(
         content_id: tweet.id.to_s,
         text: tweet.text,
-        create_time: DateTime.parse(tweet.created_at),
+        create_time: DateTime.parse(tweet.created_at.to_s),
         favorites: tweet.favorited?,
         retweet_count: tweet.retweet_count,
         creator_id: self.id,
