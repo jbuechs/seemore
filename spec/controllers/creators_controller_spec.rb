@@ -5,13 +5,15 @@ RSpec.describe CreatorsController, type: :controller do
 
   describe "GET#search" do
     let (:vimeo_search_params) {
-      { vimeoquery: "Hello" }
+      { query: "Hello",
+        provider: "vimeo" }
     }
     let (:twitter_search_params) {
-      { twitterquery: "Hello" }
+      { query: "Hello",
+        provider: "twitter" }
     }
     let (:invalid_search_params) {
-      { twitterquery: "" }
+      { query: "" }
     }
     context "blank search" do
       it "creates a flash message" do
