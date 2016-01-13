@@ -1,24 +1,23 @@
+require 'pry'
+
 class UsersController < ApplicationController
   def show
     @creators = current_user.creators
   end
 
   def feed
-    if session[:user_id].nil?
-      redirect_to login_path
-    else
-      # @contents = []
-      # current_user.creators.each do |creator|
-      #   @contents << creator.get_content.flatten
-      # end
-      # @contents = @contents.flatten.sort_by! do |content|
-      #   content[:create_time]
-      # end
-      # @contents = @contents.reverse.take(10)
-      # raise
-      @contents = current_user.contents.flatten
-      render "feed"
-    end
+    #user not logged in
+   if session[:user_id].nil?
+     redirect_to login_path
+   else
+     # check for new content from all the creators
+     current_user.creators.each do |creator|
+       creator.get_content
+     end
+     @contents = current_user.content.flatten
+     @contents = @contents.flatten.sort_by! { |content| content[:create_time] }.reverse
+     render "feed"
+   end
   end
 
   def delete
