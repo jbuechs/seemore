@@ -2,23 +2,18 @@ class CreatorsController < ApplicationController
   include HTTParty
   LIMIT_PER_PAGE = 10
 
-  #add an instance of a content creator to the database
-  def create
-    @tweet = twit.user_timeline(params[:username])[0].text
-
-  end
-
   #use private methods to determine which api to search
   def search
-    if !params[:vimeoquery].nil?
-      # complete vimeo search
+    if params[:vimeoquery] == "" || params[:twitterquery] == ""
+      flash["error"] = "Nothing entered in search field."
+      redirect_to root_path
+    elsif !params[:vimeoquery].nil?
       @creators = vimeo_search(params[:vimeoquery])
-    elsif !params[:twitterquery].nil?
-      @creators = twitter_search(params[:twitterquery])
+      render :search
     else
-      # nothing in either search field
+      @creators = twitter_search(params[:twitterquery])
+      render :search
     end
-
   end
 
   private
@@ -41,11 +36,7 @@ class CreatorsController < ApplicationController
     end
 
     def convert_to_json(httparty_response)
-      if httparty_response.class == HTTParty::Response
-        return JSON.parse(httparty_response.parsed_response)
-      else
-        raise "Invalid type of input for API response"
-      end
+      return JSON.parse(httparty_response.parsed_response)
     end
 
     #method to configure twitter
@@ -62,7 +53,7 @@ class CreatorsController < ApplicationController
         tweeter = Creator.new(
           p_id: user.id,
           provider: "twitter",
-          avatar_url: user.profile_image_url,
+          avatar_url: user.profile_image_url(size = :original),
           username: user.screen_name,
         )
         tweeters << tweeter
@@ -74,7 +65,7 @@ class CreatorsController < ApplicationController
     # given a uri the method returns the vimeo user id
     # example: given "/users/12901182" the method returns 12901182
     def get_vimeo_id(uri)
-      return uri.sub("/users/", "").to_i
+      return uri.sub("/users/", "")
     end
 
 

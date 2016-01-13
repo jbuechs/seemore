@@ -1,10 +1,12 @@
+require 'pry'
+
 class Creator < ActiveRecord::Base
   has_many :content
   has_and_belongs_to_many :users
   validates :p_id, :provider, :username, presence: true
 
   include HTTParty
-  LIMIT_PER_PAGE = 10
+  LIMIT_PER_PAGE = 1
 
   #method to configure twitter
   def twit
@@ -29,8 +31,27 @@ class Creator < ActiveRecord::Base
     end
   end
 
-  def get_tweets(username)
-    @tweets = twit.user_timeline(twitter_user)
+  def get_tweets
+    tweeties = twit.user_timeline(self.username)
+    tweets = []
+    tweeties.each do |tweet|
+      tweets << Content.create(
+      content_id: tweet.id.to_s,
+      text: tweet.text,
+      create_time: tweet.created_at,
+      favorites: tweet.favorited?,
+      retweet_count: tweet.retweet_count,
+      creator_id: self.id,
+      provider: "twitter"
+      )
+    end
+    return tweets
+  end
+
+  def find_or_save_tweets(tweet_array)
+  end
+
+  def get_saved_tweets
   end
 
   def get_videos
@@ -41,13 +62,13 @@ class Creator < ActiveRecord::Base
 
     vids.each do |vid|
       videos << Content.create(
-        content_id: vid["uri"],
+        content_id: vid["uri"].gsub(/[^\d]/, ''),
         text: vid["description"],
         create_time: vid["created_time"],
-        favorites: nil,
-        embed_code: vid["embed"],
+        favorites: vid["metadata"]["connections"]["likes"]["total"],
         retweet_count: nil,
-        creator_id: self.id
+        creator_id: self.id,
+        provider: "vimeo"
       )
     end
     return videos

@@ -14,7 +14,7 @@
             conversation : 'none',    // or all
             cards        : 'visible',  // or visible
             linkColor    : '#EDA83C', // default is blue
-            theme        : 'dark',    // or dark
+            theme        : 'light',    // or dark
             width        : '550', // amount in pixels, between 250 and 550
             align        : 'center' // float the Tweet left, right, or center
           });
@@ -22,6 +22,7 @@
     });
 
 </script>
+
 
 <!-- This code will be used to cycle through the content objects and print them out to the feed -->
 
@@ -36,12 +37,16 @@
 
  <!-- Below is sample hard coded tweets and videos for demonstaration -->
 
-<div class="tweet" tweetID="672268372868923393"></div>
+<% @contents.each do |content| %>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/150929970" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+  <% if content.provider == "vimeo" %>
 
-<div class="tweet" tweetID="685326257530208256"></div>
+    <div class="video"> <iframe src="//player.vimeo.com/video/<%= content.content_id.to_i %>" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/151125689" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+  <% elsif content.provider == "twitter" %>
 
-<div class="video"> <iframe src="//player.vimeo.com/video/149498844" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+    <div class="tweet" tweetID="<%= content.content_id %>"></div>
+
+  <% end %>
+
+<% end %>

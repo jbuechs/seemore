@@ -1,13 +1,21 @@
 class UsersController < ApplicationController
   def show
+    @creators = current_user.creators
   end
 
   def feed
     if session[:user_id].nil?
       redirect_to login_path
+    else
+      @contents = []
+      current_user.creators.each do |creator|
+        @contents << creator.get_content.flatten
+      end
+      @contents = @contents.flatten.sort_by! do |content|
+        content[:create_time]
+      end
+      @contents = @contents.reverse.take(10)
     end
-    #the following code is JUST FOR TESTING
-    @tweets =  Seemore::Application.config.twitter.user_timeline("bumbbles21")
   end
 
   def delete
@@ -18,29 +26,28 @@ class UsersController < ApplicationController
 
   # adds a creator to the user's list
   def update
-    # if the creator already exists, get the creator and add to user's list
-    creator = Creator.where("provider = ? AND p_id = ?", params["provider"], params["p_id"])
-    if !creator.exists?
-      # if the creator does not exist, create creator and add to user's list
-      creator = Creator.create(creator_hash(params))
-      creator.get_content
-    else
-    # Creator.where method returns an array of creators. Need to pull out the first
-      creator = creator.first
+    creator, following = current_user.following(params["provider"], params["p_id"])
+    if !following
+      if creator.nil?
+      # if the creator does not exist, create creator
+        creator = Creator.create(creator_hash(params))
+        creator.get_content
+      end
+      current_user.creators << creator
+      flash[:notice] = "#{creator.username} has been added to your feed!"
     end
-    current_user.creators << creator if current_user.creators
-    flash[:notice] = "#{creator.username} has been added to your feed!"
     redirect_to root_path
   end
 
   #remove a creator from a user's follow list
   def delete_creator
-    # somehow search for creator based on params
-    # creator = Creator.where("provider = ? AND p_id = ?", params["provider"], params["p_id"])
+    # find creator from params
+    creator = Creator.find_by(provider: params["provider"], p_id: params["p_id"])
     # remove creator from user's list
-    # self.creators.delete(creator)
+    current_user.creators.delete(creator)
     # if the creator is no longer followed, delete it
-    # creator.delete if creator.users.nil?
+    creator.delete if creator.users.nil?
+    redirect_to current_user
   end
 
   private

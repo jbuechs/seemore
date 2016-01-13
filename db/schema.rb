@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111193034) do
+ActiveRecord::Schema.define(version: 20160112175253) do
 
   create_table "contents", force: :cascade do |t|
-    t.integer  "content_id"
+    t.string   "content_id"
     t.string   "text"
     t.string   "create_time"
     t.integer  "favorites"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160111193034) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "creator_id"
+    t.string   "provider"
   end
 
   add_index "contents", ["creator_id"], name: "index_contents_on_creator_id"
