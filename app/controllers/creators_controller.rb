@@ -4,14 +4,14 @@ class CreatorsController < ApplicationController
 
   #use private methods to determine which api to search
   def search
-    if params[:vimeoquery] == "" || params[:twitterquery] == ""
+    if params[:query] == ""
       flash["error"] = "Nothing entered in search field."
       redirect_to root_path
-    elsif !params[:vimeoquery].nil?
-      @creators = vimeo_search(params[:vimeoquery])
+    elsif params[:provider] == "vimeo"
+      @creators = vimeo_search(params[:query])
       render :search
     else
-      @creators = twitter_search(params[:twitterquery])
+      @creators = twitter_search(params[:query])
       render :search
     end
   end
