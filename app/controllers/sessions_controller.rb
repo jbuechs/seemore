@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   #this line is for the omniauth developer strategy login.
   skip_before_filter :verify_authenticity_token, only: :create
+  skip_before_action :require_login,only: [:new, :create]
 
   def create
     #can sign in with twitter or vimeo
