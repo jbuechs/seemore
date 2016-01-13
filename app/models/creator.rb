@@ -33,10 +33,6 @@ class Creator < ActiveRecord::Base
 
   def get_tweets
     tweet_array = twit.user_timeline(self.username)
-    find_or_create_tweets(tweet_array)
-  end
-
-  def find_or_create_tweets(tweet_array)
     tweets = []
     tweet_array.each do |tweet|
       content = Content.find_by(content_id: tweet.id.to_s)
@@ -57,45 +53,50 @@ class Creator < ActiveRecord::Base
     return tweets
   end
 
-  def get_saved_content
-    contents = []
-    self.content.each do |cont|
-      contents.push(cont)
-    end
-    return contents
-  end
+  # def get_saved_content
+  #   contents = []
+  #   self.content.each do |cont|
+  #     contents.push(cont)
+  #   end
+  #   return contents
+  # end
 
-  def update_content
-    creators = self.creators
-    creators.each do |creator|
-      if creator.provider == "twitter"
-        @tweets = twitter.user_timeline(creator.username)
-        @tweets.each do |tweet|
-          tweet.find_or_create
-        end
-      else
-        #TODO: same for vimeo
-      end
-    end
-  end
+  # def update_content
+  #   creators = self.creators
+  #   creators.each do |creator|
+  #     if creator.provider == "twitter"
+  #       @tweets = twitter.user_timeline(creator.username)
+  #       @tweets.each do |tweet|
+  #         tweet.find_or_create
+  #       end
+  #     else
+  #       #TODO: same for vimeo
+  #     end
+  #   end
+  # end
 
   def get_videos
     response = HTTParty.get("https://api.vimeo.com/users/#{self.p_id}/videos?per_page=#{LIMIT_PER_PAGE}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
     parsed_response = JSON.parse(response)
     vids = parsed_response["data"]
     videos = []
-
     vids.each do |vid|
-      videos << Content.create(
-        content_id: vid["uri"].gsub(/[^\d]/, ''),
-        text: vid["description"],
-        create_time: vid["created_time"],
-        favorites: vid["metadata"]["connections"]["likes"]["total"],
-        retweet_count: nil,
-        creator_id: self.id,
-        provider: "vimeo"
-      )
+      content = Content.find_by(content_id: vid["uri"].gsub(/[^\d]/, ''))
+      if !content.nil?
+        videos.push(vid)
+      else
+        videos << Content.create(
+          content_id: vid["uri"].gsub(/[^\d]/, ''),
+          text: vid["description"],
+          create_time: vid["created_time"],
+          favorites: vid["metadata"]["connections"]["likes"]["total"],
+          retweet_count: nil,
+          creator_id: self.id,
+          provider: "vimeo"
+        )
+      end
     end
     return videos
   end
+
 end

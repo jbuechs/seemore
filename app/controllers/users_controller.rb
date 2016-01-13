@@ -1,3 +1,5 @@
+require 'pry'
+
 class UsersController < ApplicationController
   def show
     @creators = current_user.creators
@@ -9,11 +11,13 @@ class UsersController < ApplicationController
     else
     @contents = []
       current_user.creators.each do |creator|
-        @contents << creator.get_saved_content
+        @contents << creator.get_content
       end
     @contents.flatten!
     @contents.sort_by! { |content|
-      content[:create_time] }.reverse.take(10)
+      content[:create_time] }
+    @contents.reverse!
+    @contents = @contents.take(20)
     end
   end
 
