@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   # The helper_method line allows us to use @current_user in our view files.
+
+  def require_login
+    unless current_user
+      flash[:error] = "Please log in to view this section."
+      redirect_to login_path
+    end
+  end
+
 end
