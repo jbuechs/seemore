@@ -84,7 +84,7 @@ class Creator < ActiveRecord::Base
         videos << Content.create(
           content_id: vid["uri"].gsub(/[^\d]/, ''),
           text: vid["description"],
-          create_time: DateTime.parse(vid["created_time"]),
+          create_time: DateTime.parse(vid["created_time"].to_s),
           favorites: vid["metadata"]["connections"]["likes"]["total"],
           creator_id: self.id,
           provider: "vimeo"

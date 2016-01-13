@@ -16,4 +16,10 @@ FactoryGirl.define do
     uid 1234
     provider "developer"
   end
+
+  factory :user, class: User do
+    name "Ada"
+    uid "1234"
+    provider "twitter"
+  end
 end
