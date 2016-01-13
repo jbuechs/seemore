@@ -55,6 +55,7 @@
 
 .video {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .row-centered {
@@ -71,6 +72,12 @@
   display:inline-block;
   width: 240px;
   overflow: scroll;
+}
+
+@media (min-width: 992px){
+  .c-search {
+    height: 145px;
+  }
 }
 
 .display-img {

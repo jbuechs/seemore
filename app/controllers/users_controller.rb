@@ -9,15 +9,8 @@ class UsersController < ApplicationController
     if session[:user_id].nil?
       redirect_to login_path
     else
-    @contents = []
-      current_user.creators.each do |creator|
-        @contents << creator.get_content
-      end
-    @contents.flatten!
-    @contents.sort_by! { |content|
-      content[:create_time] }
-    @contents.reverse!
-    @contents = @contents.take(20)
+      @contents = current_user.contents.flatten
+      render "feed"
     end
   end
 
@@ -44,12 +37,13 @@ class UsersController < ApplicationController
 
   #remove a creator from a user's follow list
   def delete_creator
-    # somehow search for creator based on params
-    # creator = Creator.where("provider = ? AND p_id = ?", params["provider"], params["p_id"])
+    # find creator from params
+    creator = Creator.find_by(provider: params["provider"], p_id: params["p_id"])
     # remove creator from user's list
-    # self.creators.delete(creator)
+    current_user.creators.delete(creator)
     # if the creator is no longer followed, delete it
-    # creator.delete if creator.users.nil?
+    creator.delete if creator.users.nil?
+    redirect_to current_user
   end
 
   private

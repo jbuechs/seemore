@@ -32,7 +32,7 @@ RSpec.describe Creator, type: :model do
     context "creator is not recognized" do
       let(:invalid_creator) { build(:vimeo_creator, provider: "random") }
       it "raises an error" do
-        expect(invalid_creator.get_content).to raise_error(RuntimeError, "Content provider provided is not recognized (vimeo, twitter).")
+        expect{invalid_creator.get_content}.to raise_error(RuntimeError, "Content provider provided is not recognized (vimeo, twitter).")
       end
     end
   end
