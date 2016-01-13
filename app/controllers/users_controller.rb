@@ -7,16 +7,9 @@ class UsersController < ApplicationController
     if session[:user_id].nil?
       redirect_to login_path
     else
-      # @contents = []
-      # current_user.creators.each do |creator|
-      #   @contents << creator.get_content.flatten
-      # end
-      # @contents = @contents.flatten.sort_by! do |content|
-      #   content[:create_time]
-      # end
-      # @contents = @contents.reverse.take(10)
-      # raise
       @contents = current_user.contents.flatten
+      @contents = @contents.flatten.sort_by! { |content| content[:create_time] }.reverse
+      binding.pry
       render "feed"
     end
   end
