@@ -74,6 +74,12 @@
   overflow: scroll;
 }
 
+@media (min-width: 992px){
+  .c-search {
+    height: 145px;
+  }
+}
+
 .display-img {
   border-radius: 50%;
 }
