@@ -47,7 +47,7 @@ class Creator < ActiveRecord::Base
         tweets << Content.create(
         content_id: tweet.id.to_s,
         text: tweet.text,
-        create_time: tweet.created_at,
+        create_time: DateTime.parse(tweet.created_at),
         favorites: tweet.favorited?,
         retweet_count: tweet.retweet_count,
         creator_id: self.id,
@@ -84,7 +84,7 @@ class Creator < ActiveRecord::Base
         videos << Content.create(
           content_id: vid["uri"].gsub(/[^\d]/, ''),
           text: vid["description"],
-          create_time: vid["created_time"].nil? ? "" : vid["created_time"],
+          create_time: DateTime.parse(vid["created_time"]),
           favorites: vid["metadata"]["connections"]["likes"]["total"],
           creator_id: self.id,
           provider: "vimeo"

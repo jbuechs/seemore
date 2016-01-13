@@ -6,23 +6,18 @@ class UsersController < ApplicationController
   end
 
   def feed
-    #if the user is not logged in
-    if session[:user_id].nil?
-      redirect_to login_path
-    #if the user is logged in
-    else
-    @contents = []
-      #get the content for each creater the user is following
-      current_user.creators.each do |creator|
-        @contents << creator.get_content
-      end
-    @contents.flatten!
-    #order a certain number of the content objects
-    @contents.sort_by! { |content|
-      content[:create_time] }
-    @contents.reverse!
-    @contents = @contents.take(20)
-    end
+    #user not logged in
+   if session[:user_id].nil?
+     redirect_to login_path
+   else
+     # check for new content from all the creators
+     current_user.creators.each do |creator|
+       creator.get_content
+     end
+     @contents = current_user.content.flatten
+     @contents = @contents.flatten.sort_by! { |content| content[:create_time] }.reverse
+     render "feed"
+   end
   end
 
   def delete
