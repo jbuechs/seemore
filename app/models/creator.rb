@@ -6,7 +6,7 @@ class Creator < ActiveRecord::Base
   validates :p_id, :provider, :username, presence: true
 
   include HTTParty
-  LIMIT_PER_PAGE = 1
+  LIMIT_PER_PAGE = 10
 
   #method to configure twitter
   def twit
@@ -32,26 +32,51 @@ class Creator < ActiveRecord::Base
   end
 
   def get_tweets
-    tweeties = twit.user_timeline(self.username)
+    tweet_array = twit.user_timeline(self.username)
+    find_or_create_tweets(tweet_array)
+  end
+
+  def find_or_create_tweets(tweet_array)
     tweets = []
-    tweeties.each do |tweet|
-      tweets << Content.create(
-      content_id: tweet.id.to_s,
-      text: tweet.text,
-      create_time: tweet.created_at,
-      favorites: tweet.favorited?,
-      retweet_count: tweet.retweet_count,
-      creator_id: self.id,
-      provider: "twitter"
-      )
+    tweet_array.each do |tweet|
+      content = Content.find_by(content_id: tweet.id.to_s)
+      if !content.nil?
+        tweets.push(content)
+      else
+        tweets << Content.create(
+        content_id: tweet.id.to_s,
+        text: tweet.text,
+        create_time: tweet.created_at,
+        favorites: tweet.favorited?,
+        retweet_count: tweet.retweet_count,
+        creator_id: self.id,
+        provider: "twitter"
+        )
+      end
     end
     return tweets
   end
 
-  def find_or_save_tweets(tweet_array)
+  def get_saved_content
+    contents = []
+    self.content.each do |cont|
+      contents.push(cont)
+    end
+    return contents
   end
 
-  def get_saved_tweets
+  def update_content
+    creators = self.creators
+    creators.each do |creator|
+      if creator.provider == "twitter"
+        @tweets = twitter.user_timeline(creator.username)
+        @tweets.each do |tweet|
+          tweet.find_or_create
+        end
+      else
+        #TODO: same for vimeo
+      end
+    end
   end
 
   def get_videos

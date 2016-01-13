@@ -6,17 +6,15 @@ class UsersController < ApplicationController
   def feed
     if session[:user_id].nil?
       redirect_to login_path
-    end
-
+    else
     @contents = []
-    current_user.creators.each do |creator|
-      @contents << creator.get_content.flatten
+      current_user.creators.each do |creator|
+        @contents << creator.get_saved_content
+      end
+    @contents.flatten!
+    @contents.sort_by! { |content|
+      content[:create_time] }.reverse.take(10)
     end
-    @contents = @contents.flatten.sort_by! do |content|
-      content[:create_time]
-    end
-    @contents = @contents.reverse.take(10)
-    return @contents
   end
 
   def delete
