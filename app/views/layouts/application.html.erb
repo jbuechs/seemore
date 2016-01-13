@@ -8,7 +8,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="main-content">
-  <%= render 'layouts/navbar' %>
+  <%= render 'layouts/header' %>
+  <% if @current_user %>
+    <%= render 'layouts/navbar' %>
+  <% end %>
   <div class="container">
     <%= render partial: "shared/flash_messages", flash: flash %>
     <%= yield %>

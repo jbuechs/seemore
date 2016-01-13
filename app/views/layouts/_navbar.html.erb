@@ -1,27 +1,23 @@
-<nav class="navbar navbar-default">
-    <div class="jumbotron container-fluid">
-      <%= link_to image_tag("illuminapeye.png"), root_path, class: "navbar brand" %>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <% if @current_user %>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <%= form_tag({controller: "creators", action: "search"}, method: "get", class: "navbar-form navbar-left") do %>
-        <div class="form-group">
-          <%= text_field_tag "query", params[:query], placeholder: "Search", class: "form-control" %>
-        </div>
-        <% ['vimeo', 'twitter'].each do |api| %>
+<nav class="navbar navbar-default navbar-static-top">
+<!-- Collect the nav links, forms, and other content for toggling -->
+  <div id="nav">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <%= form_tag({controller: "creators", action: "search"}, method: "get", class: "navbar-form navbar-left") do %>
+      <div class="form-group">
+        <%= text_field_tag "query", params[:query], placeholder: "Search", class: "form-control" %>
+      </div>
+      <% ['vimeo', 'twitter'].each do |api| %>
         <div class="form-group">
           <%= radio_button_tag 'provider', api %>
           <%= api.humanize %>
         </div>
-        <% end %>
-        <%= submit_tag("Illuminate", class: "btn btn-default") %>
-        <% end %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to '<i class="fa fa-cog"></i> Feed Manager'.html_safe, user_path(@current_user.id) %></li>
-          <li><%= link_to "Log Out", logout_path, method: :delete %></li>
-        </ul>
-      </div>
+      <% end %>
+      <%= submit_tag("Illuminate", class: "btn btn-default") %>
     <% end %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to '<i class="fa fa-cog"></i> Feed Manager'.html_safe, user_path(@current_user.id) %></li>
+      <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+    </ul>
+    </div>
   </div>
 </nav>
