@@ -4,7 +4,7 @@
   <% end %>
 
   <% @creators.each do |creator| %>
-    <div class="col-md-4 feed-manager">
+    <div class="col-lg-4 feed-manager">
       <% if creator.has_image?%>
         <%= image_tag(creator.avatar_url, size:"100x100", class:"display-img") %>
       <% else %>

@@ -65,7 +65,12 @@
 
 .fm-row-centered {
   text-align: center;
-  margin-left: 35px;
+}
+
+@media (min-width: 1200px){
+  .fm-row-centered {
+    margin-left: 90px;
+  }
 }
 
 .c-search {
