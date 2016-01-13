@@ -18,8 +18,7 @@
       <% end %>
       <strong><%= creator.username %></strong>
       <br>
-      <!-- TODO: add correct path to disconnect creator from user -->
-      <%= link_to "✖︎", root_path, class:"btn btn-sm btn-danger" %>
+      <%= link_to "✖︎", delete_creator_user_path(@current_user, provider: creator.provider, p_id: creator.p_id), class:"btn btn-sm btn-danger" %>
     </div>
   <% end %>
 </div>
