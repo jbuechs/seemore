@@ -32,7 +32,6 @@ RSpec.describe CreatorsController, type: :controller do
     context "vimeo query" do
       it "redirects to search page" do
         get :search, vimeo_search_params
-        binding.pry
         expect(subject).to render_template :search
       end
     end
