@@ -31,6 +31,7 @@ class Creator < ActiveRecord::Base
       raise "Content provider provided is not recognized (vimeo, twitter)."
     end
     self.last_updated = DateTime.now
+    self.save
   end
 
 #method to call api for tweets and save to database
