@@ -75,7 +75,5 @@ RSpec.describe UsersController, type: :controller do
         expect(user.creators.all.count).to eq(@count - 1)
       end
     end
-
   end
-
 end
