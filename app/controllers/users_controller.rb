@@ -24,11 +24,9 @@ class UsersController < ApplicationController
    end
   end
 
-  def delete
-  end
+  def delete; end
 
-  def create
-  end
+  def create; end
 
   # adds a creator to the user's list
   def update

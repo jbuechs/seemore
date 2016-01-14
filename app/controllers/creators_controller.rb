@@ -67,6 +67,4 @@ class CreatorsController < ApplicationController
     def get_vimeo_id(uri)
       return uri.sub("/users/", "")
     end
-
-
 end
