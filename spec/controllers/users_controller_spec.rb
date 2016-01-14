@@ -39,20 +39,21 @@ RSpec.describe UsersController, type: :controller do
   describe "PATCH #update" do
     context "creator does not exist" do
       let (:params) do
-        {p_id: "567h567j",
-        username: "l33ttw3et",
+        {p_id: "154915030",
+        username: "stillkidrauhl",
         avatar_url: "avatar_url.com",
-        provider: "twitter"}
+        provider: "twitter",
+        id: user.id}
       end
       # test needs to have user logged in for a creator to be created or assigned
       it "makes a new creator" do
         @count = user.creators.all.count
-        session[:user_id] = user.id
-        patch :update, params.merge(id: user.id)
+        # session[:user_id] = user.id
+        patch :update, params, user_id: user.id
         expect(user.creators.all.count).to eq(@count + 1)
       end
       it "gets the content for the new creator" do
-        patch :update, {id: user.id}, params
+        patch :update, params, user_id: user.id
         expect(Creator.last.get_content[0]).is_a?(Content)
       end
     end
