@@ -61,16 +61,6 @@ class Creator < ActiveRecord::Base
     return tweets
   end
 
-  #this method would only not call the api and instead only return what is already in the database. we would then need an update feed button with a method that would check with the api for new content.
-  # def get_saved_content
-  #   contents = []
-  #   self.content.each do |cont|
-  #     contents.push(cont)
-  #   end
-  #   return contents
-  # end
-
-  #calls vimeo api
   def get_videos
     response = HTTParty.get("https://api.vimeo.com/users/#{self.p_id}/videos?per_page=#{LIMIT_PER_PAGE}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
     parsed_response = JSON.parse(response)
