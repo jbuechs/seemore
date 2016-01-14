@@ -14,7 +14,7 @@ class UsersController < ApplicationController
      # check for new content from all the creators
      current_user.creators.each do |creator|
       # update creator from api if last updated more than 6 hours ago
-      if creator.last_updated.nil? || creator.last_updated > 6.hours.ago
+      if creator.last_updated.nil? || creator.last_updated < 6.hours.ago
         creator.get_content
       end
      end
