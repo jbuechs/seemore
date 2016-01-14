@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :twitter_creator, class: Creator do
-    p_id 154915030
-    username "stillkidrauhl"
+    p_id 1621062337
+    username "adaacademy"
     provider "twitter"
   end
 
   factory :vimeo_creator, class: Creator do
-    p_id 2699352
-    username "HELLO, SAVANTS!"
+    p_id 9573882
+    username "Sleepy Puppies"
     provider "vimeo"
   end
 
@@ -22,4 +22,5 @@ FactoryGirl.define do
     uid "1234"
     provider "twitter"
   end
+
 end

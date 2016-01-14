@@ -42,10 +42,8 @@ class Creator < ActiveRecord::Base
     tweet_array.each do |tweet|
       #checks to see if that content already exists in the database
       content = Content.find_by(content_id: tweet.id.to_s)
-      if !content.nil?
-        tweets.push(content)
       #creates new content if it does not exist
-      else
+      if content.nil?
         tweets << Content.create(
         content_id: tweet.id.to_s,
         text: tweet.text,
@@ -57,8 +55,6 @@ class Creator < ActiveRecord::Base
         )
       end
     end
-    #returns an array of content objects
-    return tweets
   end
 
   def get_videos
@@ -69,10 +65,8 @@ class Creator < ActiveRecord::Base
     vids.each do |vid|
       #checks to see if content already exists
       content = Content.find_by(content_id: vid["uri"].gsub(/[^\d]/, ''))
-      if !content.nil?
-        videos.push(content)
-      else
       #if it doesn't exist, create new content with the vimeo data
+      if content.nil?
         videos << Content.create(
           content_id: vid["uri"].gsub(/[^\d]/, ''),
           text: vid["description"],
@@ -83,6 +77,5 @@ class Creator < ActiveRecord::Base
         )
       end
     end
-    return videos
   end
 end
