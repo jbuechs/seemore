@@ -19,19 +19,17 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET #feed" do
-    context "user is not logged in" do
-      it "redirects to login_path" do
-        get :feed, {id: user.id}, user_id: nil
-        expect(subject).to redirect_to login_path
-      end
-    end
     context "user is logged in" do
+      let (:params) do
+        {p_id: "154915030",
+        username: "stillkidrauhl",
+        avatar_url: "avatar_url.com",
+        provider: "twitter",
+        id: user.id}
+      end
       it "renders feed template" do
         get :feed, {id: user.id}, user_id: user.id
         expect(subject).to render_template :feed
-      end
-      it "assigns current user's content to @content" do
-
       end
     end
   end
@@ -59,13 +57,25 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  #
-  # describe "GET #delete" do
-  #
-  # end
-  #
-  # describe "GET #create" do
-  #
-  # end
+  describe "GET #delete_creator" do
+    context "creator is no longer followed" do
+      let (:params) do
+        {p_id: "154915030",
+        username: "stillkidrauhl",
+        avatar_url: "avatar_url.com",
+        provider: "twitter",
+        id: user.id}
+      end
+      before :each do
+        patch :update, params, user_id: user.id
+      end
+      it "deletes the creator" do
+        @count = user.creators.all.count
+        get :delete_creator, params, user_id: user.id
+        expect(user.creators.all.count).to eq(@count - 1)
+      end
+    end
+
+  end
 
 end
