@@ -12,7 +12,8 @@ class UsersController < ApplicationController
    else
      # check for new content from all the creators
      current_user.creators.each do |creator|
-       creator.get_content
+      # update creator from api if last updated more than 6 hours ago
+       creator.get_content if creator.last_updated > 6.hours.ago
      end
      @contents = current_user.content.flatten
      @contents = @contents.flatten.sort_by! { |content| content[:create_time] }.reverse

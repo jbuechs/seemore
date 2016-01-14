@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113180525) do
+ActiveRecord::Schema.define(version: 20160114171839) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "content_id"
@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20160113180525) do
     t.string   "provider"
     t.string   "avatar_url"
     t.string   "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.datetime "last_updated"
   end
 
   create_table "creators_users", id: false, force: :cascade do |t|
