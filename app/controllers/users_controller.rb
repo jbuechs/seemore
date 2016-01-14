@@ -1,6 +1,8 @@
 require 'pry'
 
 class UsersController < ApplicationController
+  skip_before_action :require_login,only: [:feed]
+  
   def show
     @creators = current_user.creators
   end
