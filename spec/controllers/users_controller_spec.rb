@@ -52,7 +52,7 @@ RSpec.describe UsersController, type: :controller do
       end
       it "gets the content for the new creator" do
         patch :update, params, user_id: user.id
-        expect(Creator.last.get_content[0]).is_a?(Content)
+        expect(Creator.last.content[0]).is_a?(Content)
       end
     end
   end
