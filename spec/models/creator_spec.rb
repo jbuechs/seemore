@@ -48,4 +48,13 @@ RSpec.describe Creator, type: :model do
       end
     end
   end
+
+  describe "get_tweets" do
+    #returns an array of content objects that are tweets
+  end
+
+  describe "get_videos" do
+    #returns an array of content objects that are videos
+  end
+
 end
