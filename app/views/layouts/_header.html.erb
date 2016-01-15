@@ -1,9 +1,7 @@
 <header>
   <div class="jumbotron container-fluid">
-    <picture>
-      <source srcset="./app/assets/images/illuminapeye_small.png" media="(max-width: 770px)">
-      <source srcset="./app/assets/images/illuminapeye.png">
-      <img src="illuminapeye.png">
-    </picture>
+    <div class="jumbotron container-fluid">
+     <%= link_to image_tag("illuminapeye.png"), root_path, class: "navbar brand" %>
+     </div>
   </div>
 </header>
