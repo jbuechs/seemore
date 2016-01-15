@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-sprockets
+
+
+$(function(){
+  $('#nav').affix({
+    offset: {
+      top: $('header').height()
+    }
+  });
+});

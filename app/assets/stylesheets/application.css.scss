@@ -16,7 +16,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- .nav-center {
+#nav.affix {
+     position: fixed;
+     top: 0;
+     width: 100%;
+     z-index:10;
+}
+
+.nav-center {
     margin:0;
     float:none;
 }
