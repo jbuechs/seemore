@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe CreatorsController, type: :controller do
 
@@ -43,5 +42,4 @@ RSpec.describe CreatorsController, type: :controller do
       end
     end
   end
-
 end

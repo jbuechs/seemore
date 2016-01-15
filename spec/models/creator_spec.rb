@@ -30,15 +30,19 @@ RSpec.describe Creator, type: :model do
 
   describe "get_content" do
     context "creator is from twitter" do
-      let(:twitter_creator) { create(:twitter_creator) }
+      let(:twitter_creator){ create(:twitter_creator) }
       it "saves content from twitter to Content database" do
-        # expect(twitter_creator.get_content).to
+        count = twitter_creator.content.count
+        expect(twitter_creator.get_content).to be true
+        expect(twitter_creator.content.count).to_not be count
       end
     end
     context "creator is from vimeo" do
       let(:vimeo_creator) { create(:vimeo_creator) }
       it "saves content from vimeo to Content database" do
-        # expect(vimeo_creator.get_content).to
+        count = vimeo_creator.content.count
+        expect(vimeo_creator.get_content).to be true
+        expect(vimeo_creator.content.count).to_not be count
       end
     end
     context "creator is not recognized" do
@@ -48,17 +52,4 @@ RSpec.describe Creator, type: :model do
       end
     end
   end
-
-  describe "get_tweets" do
-    let(:twitter_creator) { create(:twitter_creator) }
-    #returns an array of saved tweets as content objects
-    it "returns an array of tweets as content objects" do
-      # expect(twitter_creator.get_tweets.class).to_be Array
-    end
-  end
-
-  describe "get_videos" do
-    #returns an array of saved videos as content objects
-  end
-
 end

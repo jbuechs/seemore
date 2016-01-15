@@ -1,4 +1,3 @@
-require 'pry'
 
 class UsersController < ApplicationController
   skip_before_action :require_login,only: [:feed]
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
      # check for new content from all the creators
      current_user.creators.each do |creator|
       # update creator from api if last updated more than 6 hours ago
-      if creator.last_updated.nil? || creator.last_updated > 6.hours.ago
+      if creator.last_updated.nil? || creator.last_updated < 6.hours.ago
         creator.get_content
       end
      end
@@ -25,11 +24,9 @@ class UsersController < ApplicationController
    end
   end
 
-  def delete
-  end
+  def delete; end
 
-  def create
-  end
+  def create; end
 
   # adds a creator to the user's list
   def update
