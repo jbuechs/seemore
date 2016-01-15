@@ -22,5 +22,4 @@ FactoryGirl.define do
     uid "1234"
     provider "twitter"
   end
-
 end

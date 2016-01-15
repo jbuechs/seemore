@@ -52,17 +52,4 @@ RSpec.describe Creator, type: :model do
       end
     end
   end
-  #
-  # describe "get_tweets" do
-  #   let(:twitter_creator) { create(:twitter_creator) }
-  #   #returns an array of saved tweets as content objects
-  #   it "returns an array of tweets as content objects" do
-  #     # expect(twitter_creator.get_tweets.class).to_be Array
-  #   end
-  # end
-  #
-  # describe "get_videos" do
-  #   #returns an array of saved videos as content objects
-  # end
-
 end

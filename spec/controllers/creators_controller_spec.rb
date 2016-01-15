@@ -42,5 +42,4 @@ RSpec.describe CreatorsController, type: :controller do
       end
     end
   end
-
 end
