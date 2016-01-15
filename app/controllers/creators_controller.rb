@@ -19,21 +19,10 @@ class CreatorsController < ApplicationController
 
   private
     def vimeo_search(query)
-       response = HTTParty.get("https://api.vimeo.com/users?per_page=#{LIMIT_PER_PAGE}&query=#{query}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
-       json_res = convert_to_json(response)
-       vim_users = json_res["data"]
-       videographers = []
-       vim_users.each do |user|
-         videographer = Creator.new
-         videographer.p_id = get_vimeo_id(user["uri"])
-         videographer.provider = "vimeo"
-         videographer.username = user["name"]
-         videographer.avatar_url = user["pictures"]["sizes"][2]["link"] if user["pictures"]
-         # purposely do not save the videographer objects to the database,
-         # as this is only for displaying
-         videographers << videographer
-       end
-    return videographers
+     response = HTTParty.get("https://api.vimeo.com/users?per_page=#{LIMIT_PER_PAGE}&query=#{query}", headers: {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
+     json_res = convert_to_json(response)
+     vimeo_users = json_res["data"]
+     Creator.make_vimeo_creators(vimeo_users)
     end
 
     def convert_to_json(httparty_response)
@@ -47,25 +36,7 @@ class CreatorsController < ApplicationController
 
     def twitter_search(query)
       #searches for users
-      tweet_users = twit.user_search(query)
-      tweeters = []
-      #makes a new creator for each returned object from twitter query
-      tweet_users.each do |user|
-        tweeter = Creator.new(
-          p_id: user.id,
-          provider: "twitter",
-          avatar_url: user.profile_image_url(size = :original),
-          username: user.screen_name,
-        )
-        tweeters << tweeter
-      end
-      #returns an array of twitter creators
-      return tweeters
-    end
-
-    # given a uri the method returns the vimeo user id
-    # example: given "/users/12901182" the method returns 12901182
-    def get_vimeo_id(uri)
-      return uri.sub("/users/", "")
+      twitter_users = twit.user_search(query)
+      Creator.make_twitter_creators(twitter_users)
     end
 end
