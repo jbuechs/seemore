@@ -86,6 +86,11 @@
 .video {
   text-align: center;
   margin-bottom: 10px;
+  iframe {
+    border-left: 0px;
+    border-right: 0px;
+    margin-left: -25px;
+  }
 }
 
 .row-centered {

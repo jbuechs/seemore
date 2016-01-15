@@ -28,7 +28,7 @@
 <div id="feed" style="display:none">
   <% @contents.each do |content| %>
     <% if content.provider == "vimeo" %>
-      <div class="video"> <iframe src="//player.vimeo.com/video/<%= content.content_id.to_i %>" width="550" height="310" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+      <div class="video"> <iframe src="//player.vimeo.com/video/<%= content.content_id.to_i %>" width="520" height="293" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
     <% elsif content.provider == "twitter" %>
       <div class="tweet" tweetID="<%= content.content_id %>"></div>
     <% end %>
