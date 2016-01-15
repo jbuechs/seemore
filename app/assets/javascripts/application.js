@@ -23,3 +23,20 @@ $(function(){
     }
   });
 });
+
+/**
+ * Listen to scroll to change header opacity class
+ */
+function checkScroll(){
+    var startY = $('.navbar').height(); //The point where the navbar changes in px
+    if($(window).scrollTop() > startY || $(window).width() < 768){
+      $('.navbar').addClass("scrolled");
+    }
+    else{
+      $('.navbar').removeClass("scrolled");
+    }
+}
+// 
+// $(window).on("scroll resize", function(){
+//   checkScroll();
+// });
