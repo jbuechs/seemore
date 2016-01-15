@@ -95,19 +95,22 @@
   border-radius: 50%;
 }
 
-input[type=text], textarea {
-  @include transition(all 0.30s ease-in-out);
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #DDDDDD;
+.form-control:focus {
+  border-color: #EDA83C;
+  box-shadow: 0px 1px 1px #EDA83C inset, 0px 0px 8px #EDA83C;
 }
 
-input[type=text]:focus, textarea:focus {
-  @include box-shadow(0 0 5px #EDA83C);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #EDA83C;
+:focus  {
+  outline: 0 !important;
+  outline-color: #EDA83C;
+  border-color: #EDA83C;
+  box-shadow: 0px 1px 1px #EDA83C inset, 0px 0px 8px #EDA83C;
+}
+
+a:focus {
+  outline-color: none;
+  border-color: #EDA83C;
+  box-shadow: 0px 1px 1px #EDA83C inset, 0px 0px 8px #EDA83C;
 }
 
 .login {
