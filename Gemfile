@@ -25,6 +25,7 @@ gem 'omniauth-twitter'
 
 gem 'httparty'
 gem 'twitter'
+gem 'will_paginate', '~> 3.0.5'
 
 group :development, :test do
   gem 'byebug'

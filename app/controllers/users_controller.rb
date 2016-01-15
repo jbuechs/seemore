@@ -20,6 +20,7 @@ class UsersController < ApplicationController
      end
      @contents = current_user.content.flatten
      @contents = @contents.flatten.sort_by! { |content| content[:create_time] }.reverse
+     @contents = @contents.paginate(:page => params[:page], :per_page => 10)
      render "feed"
    end
   end

@@ -9,10 +9,10 @@ class CreatorsController < ApplicationController
       flash["error"] = "Invalid search term."
       redirect_to root_path
     elsif params[:provider] == "vimeo"
-      @creators = vimeo_search(query)
+      @creators = vimeo_search(query).paginate(:page => params[:page], :per_page => 10)
       render :search
     else
-      @creators = twitter_search(query)
+      @creators = twitter_search(query).paginate(:page => params[:page], :per_page => 10)
       render :search
     end
   end
