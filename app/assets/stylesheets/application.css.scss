@@ -64,6 +64,9 @@
 
 .main-content {
   background: #000000;
+  background-image: image-url("galaxy.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .video {
