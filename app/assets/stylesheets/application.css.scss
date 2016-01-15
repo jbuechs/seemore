@@ -17,24 +17,39 @@
  @import "bootstrap";
 
 #nav.affix {
-     position: fixed;
-     top: 0;
-     width: 100%;
-     z-index:10;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:10;
+}
+
+.navbar.scrolled {
+  background: rgb(255, 255, 255); //IE
+  background: rgba(248, 248, 248, 0.9); //NON-IE
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  transition: all 0.6s ease;
 }
 
 .nav-center {
-    margin:0;
-    float:none;
+  margin:0;
+  float:none;
 }
 
 .navbar-inner{
-    text-align:center;
+  text-align:center;
 }
 
 .navbar {
-    position: relative;
-    background: #FFFFFF;
+  position: relative;
+  background: #FFFFFF;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  transition: all 0.6s ease;
 }
 
 .navbar-right {
@@ -42,11 +57,11 @@
 }
 
 .brand {
-    position: absolute;
-    left: 50%;
-    margin-left: -275px !important;  /* 50% of your logo width */
-    margin-top: -52px;
-    display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -275px !important;  /* 50% of your logo width */
+  margin-top: -52px;
+  display: block;
 }
 
 .jumbotron {
